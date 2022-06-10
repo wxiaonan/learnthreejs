@@ -21,23 +21,42 @@
 
     </div>
     <script>
+        // 场景
         const scene = new THREE.Scene();
+        // 相机
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
+        // 渲染器
         const renderer = new THREE.WebGLRenderer();
+
+        // 颜色
+        const color = new THREE.Color(0xff0000);
+
+        // 渲染器大小：输出canvas大小
         renderer.setSize(window.innerWidth, window.innerHeight);
+        // 设置渲染器颜色
+        renderer.setClearColor(color)
+
         document.body.appendChild(renderer.domElement);
 
+
+        // 几何体（长宽高）
         const geometry = new THREE.BoxGeometry(1, 1, 1);
+        // 网格材质 并 上色
         const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        // 网格
         const cube = new THREE.Mesh(geometry, material);
+        // 将立方体添加到场景中
         scene.add(cube);
 
+
+        // 定位相机
         camera.position.z = 5;
 
         function animate() {
             requestAnimationFrame(animate);
 
+            // 旋转动画
             cube.rotation.x += 0.01;
             cube.rotation.y += 0.01;
 
